@@ -47,6 +47,7 @@ export default function AboutPage() {
               </div>
             </div>
 
+
             {/* Cột phải: Hình ảnh setup máy tính công nghệ */}
             <div className="lg:col-span-6 flex justify-center">
               <div className="relative w-full max-w-lg bg-[#050811] border border-slate-800 rounded-2xl p-4 shadow-2xl flex items-center justify-center">
