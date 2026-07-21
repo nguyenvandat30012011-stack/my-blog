@@ -24,7 +24,7 @@ export default function RecentPosts() {
       ) : (
         /* Giao diện lưới: 1 cột trên mobile, 2 cột trên tablet, 3 cột trên desktop */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => {
+          {posts.map((post: any, index) => {
             // Đồng bộ hóa các trường dữ liệu tùy biến từ cả hai đoạn code của bạn
             const postPostId = (post as any).id || (post as any).slug || `post-${index}`;
             const postTitle = post.title || "Tiêu đề bài viết mẫu";
