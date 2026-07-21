@@ -26,7 +26,7 @@ export default function RecentPosts() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, index) => {
             // Đồng bộ hóa các trường dữ liệu tùy biến từ cả hai đoạn code của bạn
-            const postPostId = post.id || post.slug || `post-${index}`;
+            const postPostId = (post as any).id || (post as any).slug || `post-${index}`;
             const postTitle = post.title || "Tiêu đề bài viết mẫu";
             const postImage = post.image || "/images/kiem-tien.png";
             const postCategory = post.category || "Bài viết";
