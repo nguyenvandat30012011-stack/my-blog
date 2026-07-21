@@ -1,9 +1,21 @@
 import Link from 'next/link';
 import { getFeaturedPosts } from '@/sanity/lib/posts';
 
+// ĐOẠN 2 CỦA BẠN: Định nghĩa cấu trúc dữ liệu cho một bài viết đơn lẻ
+interface PostData {
+  id?: string | number;
+  slug?: string;
+  title?: string;
+  image?: string;
+  category?: string;
+  description?: string;
+  excerpt?: string;
+  date?: string;
+}
+
 export default function FeaturedPosts() {
-  // Tự động lấy dữ liệu bài viết nổi bật và giới hạn tối đa hiển thị 4 bài
-  const rawPosts = getFeaturedPosts() || [];
+  // Ép kiểu dữ liệu (Type Casting) cho hàm getFeaturedPosts để TypeScript hiểu cấu trúc mảng
+  const rawPosts = (getFeaturedPosts() as PostData[]) || [];
   const posts = rawPosts.slice(0, 4);
 
   return (
@@ -28,7 +40,7 @@ export default function FeaturedPosts() {
         /* Giao diện lưới: Tự động co giãn mượt mà từ 1 cột (mobile) lên 4 cột (desktop) */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {posts.map((post, index) => {
-            // Đồng bộ linh hoạt dữ liệu từ cả hai phiên bản code của bạn
+            // Giờ đây TypeScript đã biết rõ các thuộc tính nhờ vào interface PostData bên trên
             const postPostId = post.id || post.slug || `featured-${index}`;
             const postTitle = post.title || "Tiêu đề bài viết nổi bật";
             const postImage = post.image || "/images/kiem-tien.png";
@@ -42,7 +54,7 @@ export default function FeaturedPosts() {
                 className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group"
               >
                 <div>
-                  {/* HIỂN THỊ ẢNH THẬT & HIỆU ỨNG HOVER (Tích hợp từ đoạn code 2) */}
+                  {/* HIỂN THỊ ẢNH THẬT & HIỆU ỨNG HOVER */}
                   <div className="relative h-44 w-full overflow-hidden bg-slate-100">
                     <img
                       src={postImage}
